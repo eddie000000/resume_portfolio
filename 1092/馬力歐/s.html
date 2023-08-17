@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<style>
+    canvas{
+        border:1px solid #000000;
+        box-shadow: 5px 5px 5px;
+        
+    }
+</style>
+<body>
+    <canvas id="mycanvas"> 網頁遊戲設計    </canvas>
+    <script>
+        var canvas = document.getElementById("mycanvas");
+        var ctx = canvas.getContext("2d");
+        canvas.height = 400;
+        canvas.width = 600;
+        var cx =canvas.width/2,cy = canvas.height/2;
+        let mario = new Image();
+        mario.src = 'mario.png';
+        let frames = [
+            [0,0],
+            [32,0],
+            [64,0],
+            [32,0],
+            [0,0]
+        ];
+        var flip = false;
+        let fWidth = 32;
+        let fHeight = 32;
+        let fIndex = 0;
+        var moveval = 0;
+        var cxv = cx;
+        var cyv = cy;
+        function showPixel(fIndex,dx,dy)
+        {
+                ctx.drawImage(mario,frames[fIndex][0],frames[fIndex][1],fWidth,fHeight,cxv,cyv,fWidth*2,fHeight*2);     
+        }
+        function drawing()
+        {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            //ctx.drawImage(mario,frames[fIndex][0],frames[fIndex][1],fWidth,fHeight,cxv,cyv,fWidth*2,fHeight*2);
+            showPixel(fIndex, 0, 32); 
+            if(fIndex>=4)
+            {
+                fIndex = 0;
+            }
+            fIndex++; 
+            
+        } 
+        function loop()
+        {
+            
+            drawing();
+            //control();
+            //wait(200);
+            //requestAnimationFrame(loop);
+            //setInterval(loop,200);
+
+        }
+        // function wait(ms)
+        // {
+        //     var start = new Date().getTime();
+        //     var end = start;
+        //     while(end < start + ms) 
+        //     {
+        //         end = new Date().getTime();
+        //     }
+        // }
+        document.onkeydown = checkKey;
+        function checkKey(e) 
+        {
+            e = e || window.event;
+
+
+            if (e.keyCode == '37') 
+            {
+                console.log("L");
+                flip = true;
+                cxv-=5;
+                drawing();
+            }
+            else if (e.keyCode == '39') 
+            {
+                console.log("R");
+                flip = false;
+                cxv+=5;
+                drawing();
+            }
+
+        }
+        window.onload = loop;
+        
+
+
+
+        </script>
+</body>
+</html>
