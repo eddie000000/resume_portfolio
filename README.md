@@ -1,2 +1,3 @@
 # 以下為就學時期所做過的專案
-網頁設計_計算機[1081小作品](https://github.com/eddie000000/resume_portfolio/1081/網頁設計_計算機.html)
+網頁設計_計算機[1081小作品](https://eddie000000.github.io/resume_portfolio/1081/網頁設計_計算機.html)
+
